@@ -143,8 +143,8 @@ section{scroll-margin-top:calc(var(--nav-h) + 12px);padding:28px 0 8px}
   width:22px;height:22px;border-radius:50%;border:var(--line);background:var(--white);margin-top:4px;position:relative;z-index:1
 }
 .tl-item.must .tl-dot{background:var(--coral)}
-.tl-item.hotel .tl-dot{background:var(--sky)}
-.tl-item.food .tl-dot{background:var(--yellow)}
+.tl-item.k-hotel .tl-dot{background:var(--sky)}
+.tl-item.k-food .tl-dot{background:var(--yellow)}
 .tl-item.alt .tl-dot{border-style:dashed}
 .tl-card{
   border:2.5px solid var(--ink);border-radius:var(--r-md);background:var(--paper);
@@ -178,6 +178,12 @@ section{scroll-margin-top:calc(var(--nav-h) + 12px);padding:28px 0 8px}
   font-size:12.5px;text-decoration:none;padding:3px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--white)
 }
 .links a:hover{background:var(--yellow-l)}
+
+.memo{margin:0 16px 18px;border:2.5px dashed var(--ink);border-radius:var(--r-md);background:var(--sand);padding:8px 12px 10px}
+.memo-h{font-size:13px;color:var(--ink-soft);margin-bottom:4px}
+.memo-item{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:15px}
+.memo-item small{display:block;font-size:12.5px;color:var(--ink-soft)}
+.memo-item a{flex-shrink:0;font-size:12.5px;text-decoration:none;padding:3px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--white)}
 
 /* bounce on switch */
 .bounce-in{animation:bounceIn .62s cubic-bezier(.28,1.5,.5,1) both}
@@ -503,7 +509,6 @@ footer svg{width:120px;margin:0 auto 8px}
       <svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2.4" stroke-linejoin="round"/><rect x="10" y="14" width="4" height="6" fill="#3E3A39"/></svg>
     </span>住宿資訊</h2>
     <div class="hotels" id="hotels"></div>
-    <p class="note-strip">＊11/24 地圖上未標住宿，暫列為續住 Y's Inn，請再確認</p>
   </div>
 </section>
 </main>
@@ -554,13 +559,15 @@ footer svg{width:120px;margin:0 auto 8px}
         {t:"下午", title:"奧武島", mode:"car", note:"小島上有炸天婦羅小店。", ll:[26.1293214,127.7724548]},
         {t:"下午", title:"Hamabe no Chaya 濱邊茶屋", mode:"car", kind:"food", note:"海邊咖啡廳，17:00 關門，可以點個小甜點。", ll:[26.1335308,127.7846459]},
         {t:"傍晚", title:"知念岬公園", mode:"car", must:true, note:"沿步道走到海岬，看一整片海。", ll:[26.1673384,127.8289243]},
-        {t:"傍晚", title:"COSTCO 好市多 沖繩店", mode:"car", ll:[26.1552838,127.7866429]},
-        {t:"晚餐", title:"國際通 散步", mode:"car", note:"地圖備註：平日 10:00–17:00，週六日休息。", ll:[26.2177333,127.6925299]},
-        {t:"晚餐", title:"Steak House 88 辻本店", mode:"walk", kind:"food", note:"營業至凌晨 2:00，現場排隊。", ll:[26.2177845,127.6914482]},
+        {t:"晚餐", title:"Steak House 88 辻本店", mode:"car", kind:"food", note:"營業至凌晨 2:00，現場排隊。", ll:[26.2177845,127.6914482]},
         {t:"備選", title:"沖繩麵 EIBUN", mode:"walk", kind:"food", alt:true, note:"營業至 20:00。", ll:[26.2127052,127.690079]},
         {t:"備選", title:"JEF Sunrise Naha 苦瓜漢堡", mode:"walk", kind:"food", alt:true, note:"營業至 20:00。", ll:[26.212807,127.689284]},
         {t:"備選", title:"沖繩飯糰", mode:"walk", kind:"food", alt:true, note:"7:00–20:00。", ll:[26.2151837,127.6879713]},
-        {t:"備選", title:"Golf Golf", mode:"walk", alt:true, ll:[26.210647,127.695279]}
+        {t:"晚上", title:"國際通 散步", mode:"walk", note:"地圖備註：平日 10:00–17:00，週六日休息。", ll:[26.2177333,127.6925299]},
+        {t:"夜晚", title:"Golf Golf 入住", mode:"car", kind:"hotel", ll:[26.210647,127.695279], map:"https://www.google.com/maps?cid=16483841950662653851"}
+      ],
+      memo:[
+        {title:"COSTCO 好市多 沖繩店", note:"順路有空再去，不排進行程。", ll:[26.1552838,127.7866429]}
       ]},
     { date:"11/25", wk:"三", title:"西海岸＆本部半島", area:"恩納 → 名護 → 古宇利 → 本部", art:"island", color:"var(--green-l)",
       items:[
@@ -573,8 +580,6 @@ footer svg{width:120px;margin:0 auto 8px}
         {t:"下午", title:"瀨底島・Anchi 海灘", mode:"car", note:"瀨底大橋下和瀨底島公園都可以免費停車。", ll:[26.6493125,127.8739375]},
         {t:"19:00", title:"百年古家 大家 阿古豬", mode:"car", kind:"food", must:true, note:"11:00–15:30／17:30–21:00，官網訂位。", ll:[26.6209963,127.9636717],
           links:[["TableCheck 訂位","https://www.tablecheck.com/shops/ufuya/reserve"]]},
-        {t:"備選", title:"やんばるダイニング 松の古民家", mode:"car", kind:"food", alt:true, note:"阿古豬火鍋 17:00–22:00（待查），日文網站訂位不收費。", ll:[26.5940169,127.9773782],
-          links:[["Tabelog 訂位","https://tabelog.com/okinawa/A4702/A470201/47014042/"]]},
         {t:"夜晚", title:"ChuraumiVillage 2nd 入住", mode:"car", kind:"hotel", ll:[26.6871918,127.8861183]}
       ]},
     { date:"11/26", wk:"四", title:"美麗海水族館一整天", area:"本部 → 恩納 → 北谷", art:"shark", color:"var(--sky-l)",
@@ -650,7 +655,8 @@ footer svg{width:120px;margin:0 auto 8px}
   ];
 
   var HOTELS = [
-    {name:"Y's Inn 飯店", dates:"11/23 — 11/25", nights:"2 晚", area:"那霸・小祿", color:"var(--sky)", ll:[26.1977822,127.6658582]},
+    {name:"Y's Inn 飯店", dates:"11/23 — 11/24", nights:"1 晚", area:"那霸・小祿", color:"var(--sky)", ll:[26.1977822,127.6658582]},
+    {name:"Golf Golf", dates:"11/24 — 11/25", nights:"1 晚", area:"那霸市區・國際通附近", color:"var(--coral-l)", ll:[26.210647,127.695279], map:"https://www.google.com/maps?cid=16483841950662653851"},
     {name:"ChuraumiVillage 2nd", dates:"11/25 — 11/26", nights:"1 晚", area:"本部・美麗海附近", color:"var(--green)", ll:[26.6871918,127.8861183]},
     {name:"沖繩北谷柔婕閣酒店與旅舍", dates:"11/26 — 11/27", nights:"1 晚", area:"北谷・美國村", color:"var(--yellow)", ll:[26.3213116,127.785122]},
     {name:"沖繩那霸旭橋托里菲托酒店", dates:"11/27 — 11/30", nights:"3 晚", area:"那霸・旭橋站旁", color:"var(--coral)", ll:[26.2143138,127.672881]}
@@ -745,7 +751,7 @@ footer svg{width:120px;margin:0 auto 8px}
       var cls = ["tl-item"];
       if(it.must) cls.push("must");
       if(it.alt) cls.push("alt");
-      if(it.kind) cls.push(it.kind);
+      if(it.kind) cls.push("k-"+it.kind);
       html += '<li class="'+cls.join(" ")+'" style="--i:'+k+'">';
       html += '<div class="tl-time">'+esc(it.t)+'</div><div class="tl-dot" aria-hidden="true"></div><div class="tl-card">';
       html += '<div class="tags">'+tag(it.mode)+
@@ -762,12 +768,20 @@ footer svg{width:120px;margin:0 auto 8px}
         html += '</ul>';
       }
       var links = [];
-      if(it.ll) links.push('<a href="'+gm(it.ll[0],it.ll[1])+'" target="_blank" rel="noopener">📍 地圖</a>');
+      if(it.ll) links.push('<a href="'+esc(it.map||gm(it.ll[0],it.ll[1]))+'" target="_blank" rel="noopener">📍 地圖</a>');
       (it.links||[]).forEach(function(l){ links.push('<a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>'); });
       if(links.length) html += '<div class="links">'+links.join("")+'</div>';
       html += '</div></li>';
     });
     html += '</ol>';
+    if(d.memo){
+      html += '<div class="memo"><div class="memo-h">備註</div>';
+      d.memo.forEach(function(m){
+        html += '<div class="memo-item"><span>'+esc(m.title)+(m.note?'<small>'+esc(m.note)+'</small>':'')+'</span>'+
+          (m.ll?'<a href="'+gm(m.ll[0],m.ll[1])+'" target="_blank" rel="noopener">📍 地圖</a>':'')+'</div>';
+      });
+      html += '</div>';
+    }
     panelEl.innerHTML = html;
     panelEl.setAttribute("aria-labelledby","tab-"+i);
   }
@@ -873,7 +887,7 @@ footer svg{width:120px;margin:0 auto 8px}
   document.getElementById("hotels").innerHTML = HOTELS.map(function(h){
     return '<article class="card hotel"><div class="hotel-ic" style="background:'+h.color+'">'+hotelSvg(h.color)+'</div><div><h4>'+esc(h.name)+'</h4>'+
       '<div class="dates"><b>'+h.dates+'</b>・'+h.nights+'</div><div class="muted">'+esc(h.area)+'</div>'+
-      '<div class="links"><a href="'+gm(h.ll[0],h.ll[1])+'" target="_blank" rel="noopener">📍 地圖</a></div></div></article>';
+      '<div class="links"><a href="'+esc(h.map||gm(h.ll[0],h.ll[1]))+'" target="_blank" rel="noopener">📍 地圖</a></div></div></article>';
   }).join("");
 
   /* ---------------- nav active state ---------------- */
