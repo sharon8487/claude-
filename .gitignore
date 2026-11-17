@@ -1,0 +1,5 @@
+# 只把旅遊網站放上 GitHub，其他東西留在電腦裡
+my-video/
+.claude/
+skills-lock.json
+.DS_Store
