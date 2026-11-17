@@ -52,7 +52,7 @@ section{scroll-margin-top:calc(var(--nav-h) + 12px);padding:28px 0 8px}
   border:2.5px solid transparent;border-radius:999px;transition:background .2s,border-color .2s;
 }
 .nav-links a.active{background:var(--yellow);border-color:var(--ink)}
-@media (max-width:420px){.brand-txt{display:none}.nav-links a{padding:4px 10px}}
+@media (max-width:420px){.brand-txt{display:none}.nav-links{gap:2px}.nav-links a{padding:4px 7px;font-size:13.5px}}
 
 /* ---------- common ---------- */
 .card{background:var(--white);border:var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
@@ -224,6 +224,51 @@ section{scroll-margin-top:calc(var(--nav-h) + 12px);padding:28px 0 8px}
 .pocket{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .pocket a{font-size:14px;text-decoration:none;padding:4px 12px;border:2.5px dashed var(--ink);border-radius:999px;background:var(--sand)}
 
+/* ---------- car ---------- */
+.car-sum{overflow:hidden}
+.car-art{border-bottom:var(--line)}
+.car-art svg{width:100%;height:auto}
+.car-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px 4px}
+.car-facts div{border:2.5px solid var(--ink);border-radius:var(--r-sm);padding:6px 10px;background:var(--paper)}
+.car-facts span{display:block;font-size:12.5px;color:var(--ink-soft)}
+.car-facts b{font-weight:400;font-size:15px;line-height:1.35;display:block}
+.car-links{padding:6px 16px 16px;margin-top:4px}
+.tips{display:grid;gap:12px;margin-top:16px}
+.tip{border-radius:var(--r-md);box-shadow:3px 3px 0 var(--ink)}
+.tip summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 14px;font-size:17px;
+}
+.tip summary::-webkit-details-marker{display:none}
+.tip summary::after{
+  content:"";margin-left:auto;width:10px;height:10px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s;flex-shrink:0
+}
+.tip[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.tip[open] summary{border-bottom:2.5px dashed var(--ink)}
+.tip summary:focus-visible{outline:3px dashed var(--coral);outline-offset:-6px;border-radius:var(--r-md)}
+.tip-ic{width:32px;height:32px;border:2.5px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.tip-body{padding:10px 16px 14px;font-size:14.5px}
+.tip-body ul,.tip-body ol{margin:4px 0;padding-left:20px}
+.tip-body li{margin:3px 0}
+.tip-body b{font-weight:400;background:var(--yellow-l);border-radius:4px;padding:0 3px}
+.tip-body ul.checks{list-style:none;padding-left:0}
+.tip-body ul.checks li{position:relative;padding-left:26px}
+.tip-body ul.checks li::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border:2.5px solid var(--ink);border-radius:5px;background:var(--green-l)}
+.tip-note{margin:8px 0 0;color:var(--ink-soft);font-size:13.5px}
+.tip-warn{margin:8px 0 0;background:var(--coral-l);border:2px solid var(--ink);border-radius:10px;padding:6px 10px;font-size:13.5px}
+.tip-warn::before{content:"⚠ "}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:2.5px solid var(--ink);border-radius:var(--r-sm);overflow:hidden;margin:4px 0 8px;font-size:13.5px}
+.tbl th,.tbl td{padding:6px 8px;text-align:left;border-bottom:2px solid var(--ink);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-weight:400;background:var(--sky-l)}
+.sos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 10px}
+.sos a{text-decoration:none;text-align:center;border:var(--line);border-radius:var(--r-md);padding:8px 4px;background:var(--coral-l);box-shadow:3px 3px 0 var(--ink)}
+.sos a:nth-child(2){background:var(--yellow-l)}
+.sos b{display:block;font-weight:400;font-size:30px;line-height:1.1}
+.sos span{font-size:12.5px;color:var(--ink-soft)}
+.official{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
+.official a{font-size:12.5px;text-decoration:none;padding:3px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--white)}
+
 /* ---------- hotels ---------- */
 .hotels{display:grid;gap:14px}
 .hotel{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 16px;align-items:center}
@@ -310,6 +355,7 @@ footer svg{width:120px;margin:0 auto 8px}
       <a href="#home" class="active">首頁</a>
       <a href="#flights">航班</a>
       <a href="#days">行程</a>
+      <a href="#car">租車</a>
       <a href="#todo">清單</a>
       <a href="#stay">住宿</a>
     </div>
@@ -483,6 +529,216 @@ footer svg{width:120px;margin:0 auto 8px}
   </div>
 </section>
 
+<!-- ================= CAR ================= -->
+<section id="car">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="badge" style="background:var(--yellow)"><svg><use href="#i-car"/></svg></span>租車重點</h2>
+
+    <div class="card car-sum">
+      <div class="car-art" aria-hidden="true">
+        <svg viewBox="0 0 320 110">
+          <rect width="320" height="110" fill="#FCF1D3"/>
+          <path d="M0 86 H320" stroke="#3E3A39" stroke-width="3"/>
+          <g class="wave" fill="none" stroke="#3E3A39" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="14 12"><path d="M-20 98 H340"/></g>
+          <g class="drift"><path transform="translate(0 14) scale(.7)" d="M0 20a12 12 0 0 1 12-12a16 16 0 0 1 30-2a12 12 0 0 1 14 14z" fill="#FFFFFF" stroke="#3E3A39" stroke-width="4" stroke-linejoin="round"/></g>
+          <g transform="translate(250 30)">
+            <rect x="0" y="0" width="34" height="56" rx="6" fill="#FFFFFF" stroke="#3E3A39" stroke-width="3"/>
+            <rect x="7" y="8" width="20" height="16" rx="3" fill="#F2A497" stroke="#3E3A39" stroke-width="2.4"/>
+            <path d="M34 20 h6 q6 0 6 8 v18" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/>
+            <text x="17" y="44" font-size="11" text-anchor="middle" fill="#3E3A39" font-family="Huninn, sans-serif">油</text>
+          </g>
+          <g class="float">
+            <g transform="translate(78 34)" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round">
+              <path d="M6 44 v-14 l14 -22 h58 l20 22 h12 v14z" fill="#F6D27A"/>
+              <path d="M26 14 l-10 16 h28 v-16z M52 14 v16 h34 l-14 -16z" fill="#A8D3E6"/>
+              <circle cx="30" cy="46" r="10" fill="#FFFFFF"/><circle cx="30" cy="46" r="3" fill="#3E3A39"/>
+              <circle cx="88" cy="46" r="10" fill="#FFFFFF"/><circle cx="88" cy="46" r="3" fill="#3E3A39"/>
+              <rect x="104" y="32" width="8" height="5" rx="2" fill="#F2A497" stroke-width="2"/>
+            </g>
+            <use href="#shisa" x="104" y="34" width="22" height="22"/>
+          </g>
+        </svg>
+      </div>
+      <div class="car-facts">
+        <div><span>租車公司</span><b>OTS 臨空豐崎營業所</b></div>
+        <div><span>取車</span><b>11/24（二）08:30</b></div>
+        <div><span>還車</span><b>11/29（日）19:00 前</b></div>
+        <div><span>還車前加油</span><b>ENEOS 豐崎店・加滿</b></div>
+      </div>
+      <div class="links car-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=26.1588346,127.654403" target="_blank" rel="noopener">📍 營業所地圖</a>
+        <a href="https://www.otsinternational.jp/otsrentacar/en/okinawa/" target="_blank" rel="noopener">OTS 官網</a>
+      </div>
+    </div>
+
+    <div class="tips">
+      <details class="card tip" open>
+        <summary><span class="tip-ic" style="background:var(--coral)">證</span>證件一定要帶</summary>
+        <div class="tip-body">
+          <ul>
+            <li>台灣駕照<b>正本</b></li>
+            <li>監理站核發的駕照<b>日文譯本正本</b></li>
+            <li>護照正本</li>
+            <li>駕照和譯本另存一份電子備份</li>
+          </ul>
+          <p class="tip-warn">只帶台灣駕照，或一般的國際駕照，在日本都不能開車。</p>
+        </div>
+      </details>
+
+      <details class="card tip" open>
+        <summary><span class="tip-ic" style="background:var(--yellow)">取</span>取車時先檢查再出發</summary>
+        <div class="tip-body">
+          <ul class="checks">
+            <li>繞車一圈拍照錄影：車身四面、輪框、保險桿、車門、後視鏡</li>
+            <li>看擋風玻璃有沒有裂痕</li>
+            <li>拍儀表板和目前油量</li>
+            <li>確認油種，通常是「レギュラー（Regular）」</li>
+            <li>確認有 ETC 車載機，ETC 卡要另外租</li>
+            <li>把導航切成中文，問清楚操作方式</li>
+            <li>把租車公司的緊急電話截圖存進手機</li>
+          </ul>
+          <p class="tip-note">車上原本就有的刮痕，請工作人員寫在檢查表上，避免還車時有爭議。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--sky)">保</span>保險：CDW 與 NOC</summary>
+        <div class="tip-body">
+          <table class="tbl">
+            <tr><th>項目</th><th>用途</th></tr>
+            <tr><td>基本保險</td><td>租車契約內含的事故保障</td></tr>
+            <tr><td>CDW 免責補償</td><td>符合條件時，免付部分事故自負額</td></tr>
+            <tr><td>NOC 補償</td><td>符合條件時，免付車子維修期間的營業損失</td></tr>
+          </table>
+          <p class="tip-note">第一次在日本開車，建議兩種補償都加。各家條件和不賠的情況不同，別只看「全險」兩個字。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--green)">左</span>靠左行駛・右駕</summary>
+        <div class="tip-body">
+          <table class="tbl">
+            <tr><th></th><th>台灣</th><th>日本</th></tr>
+            <tr><td>行駛方向</td><td>靠右</td><td><b>靠左</b></td></tr>
+            <tr><td>駕駛座</td><td>左邊</td><td><b>右邊</b></td></tr>
+            <tr><td>方向燈撥桿</td><td>左邊</td><td><b>右邊</b></td></tr>
+            <tr><td>雨刷撥桿</td><td>右邊</td><td><b>左邊</b></td></tr>
+          </table>
+          <ul>
+            <li><b>轉彎後</b>最容易開到右側車道，記得靠左</li>
+            <li><b>右轉</b>要等對向直行車，左轉注意左側的行人和機車</li>
+            <li>進出停車場時也要記得靠左</li>
+            <li>口訣：<b>駕駛座永遠靠近道路中央</b></li>
+          </ul>
+          <p class="tip-note">取車後先在停車場練習前進、倒車和轉彎。前 30 分鐘別排太複雜的路線，也不要一取車就上高速公路。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--coral)">停</span>交通規則與標誌</summary>
+        <div class="tip-body">
+          <ul>
+            <li><b>止まれ</b>（紅色倒三角形）：一定要完全停住，確認安全再走</li>
+            <li><b>平交道</b>：先在停止線前停車，確認兩側沒有火車</li>
+            <li>行人準備過或已經走在斑馬線上，一定要停車讓行</li>
+            <li>紅燈時不能右轉也不能左轉；黃燈原則上要停</li>
+            <li>全車都要繫安全帶，開車時不能手拿手機</li>
+            <li>喝酒絕對不開車，前一晚喝的隔天也可能還沒退</li>
+            <li>速限看路旁標誌，路上沒車也別開快</li>
+          </ul>
+          <p class="tip-warn">沖繩的路面含石灰岩，下雨後比想像中滑，雨天請放慢。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--sky)">導</span>導航與 ETC 高速公路</summary>
+        <div class="tip-body">
+          <ul>
+            <li>Google Maps 和車上導航都用，車上導航可以輸入<b>電話號碼或 Map Code</b></li>
+            <li>目的地設成<b>停車場</b>，不要設景點名稱</li>
+            <li>Google Maps 帶你鑽很窄的小巷時，先判斷合不合理</li>
+            <li>車上有 ETC 機不代表有 ETC 卡，卡要另外租</li>
+            <li>進 ETC 專用道要減速，保持車距；還車時記得還 ETC 卡</li>
+            <li>沖繩自動車道（那霸 ↔ 名護）可以省下不少南北移動時間</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--green)">P</span>停車</summary>
+        <div class="tip-body">
+          <ul>
+            <li>景點多有免費停車場；那霸市區和國際通附近多半要付費（Times、三井 Repark 等）</li>
+            <li>先看是按小時還是按次收費，有沒有每日上限</li>
+            <li>停好後拍下車位號碼和繳費機位置；有些機器只收現金</li>
+            <li>商場消費可能可以折抵停車費</li>
+          </ul>
+          <p class="tip-note">美麗海水族館：導航到<b>海洋博公園的停車場</b>。古宇利大橋：不要停在橋上或路肩拍照。瀨長島、知念岬：海風大，開車門要抓緊，別撞到隔壁車。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--yellow)">油</span>自助加油</summary>
+        <div class="tip-body">
+          <table class="tbl">
+            <tr><th>日文</th><th>意思</th></tr>
+            <tr><td><b>レギュラー</b></td><td>一般汽油（租的小車大多用這個）</td></tr>
+            <tr><td>ハイオク</td><td>高辛烷值汽油</td></tr>
+            <tr><td>軽油</td><td>柴油（不要加錯）</td></tr>
+          </table>
+          <ol>
+            <li>停好、熄火</li>
+            <li>選付款方式（現金或信用卡）</li>
+            <li>選油種，再選「滿油（満タン）」或金額</li>
+            <li>拿對應的油槍加油，加滿會自動跳停</li>
+            <li>掛回油槍、關好油箱蓋，完成付款</li>
+          </ol>
+          <p class="tip-warn">別只看油槍顏色判斷，一定要看日文標示。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--coral)">!</span>事故或故障時</summary>
+        <div class="tip-body">
+          <div class="sos">
+            <a href="tel:110"><b>110</b><span>警察・交通事故</span></a>
+            <a href="tel:119"><b>119</b><span>救護車・消防</span></a>
+          </div>
+          <ol>
+            <li>停車、打開警示燈，先確保安全</li>
+            <li>有人受傷立刻打 119</li>
+            <li>不管事故多小都要打 110 報警，自己撞到柱子也一樣</li>
+            <li>拍下現場、車損、對方車牌和路況</li>
+            <li>聯絡租車公司，照他們的指示處理</li>
+          </ol>
+          <p class="tip-warn">千萬不要私下和解就離開，否則保險可能不理賠。</p>
+          <p class="tip-note">車子故障：移到安全的地方、開警示燈，打租車公司的救援電話。不要自己找修車廠。</p>
+        </div>
+      </details>
+
+      <details class="card tip">
+        <summary><span class="tip-ic" style="background:var(--sky)">還</span>11/29 還車流程</summary>
+        <div class="tip-body">
+          <ul class="checks">
+            <li>在還車點 3–5 公里內加滿油（行程排的是 ENEOS 豐崎店），收據留著</li>
+            <li>檢查車內有沒有遺留物品，後車廂也要看</li>
+            <li>和工作人員一起確認車況</li>
+            <li>歸還 ETC 卡，確認沒有額外費用</li>
+            <li>19:00 前一定要還車，預留排隊和接駁的時間</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="official">
+      <span class="muted">官方資訊</span>
+      <a href="https://www.japan.travel/tw/plan/getting-around/cars/" target="_blank" rel="noopener">日本觀光局・租車與駕駛</a>
+      <a href="https://visitokinawajapan.com/plan-your-trip/getting-around-okinawa/rental-vehicles-in-okinawa/" target="_blank" rel="noopener">沖繩官方旅遊指南</a>
+      <a href="https://www.thb.gov.tw/en/cp.aspx?n=790" target="_blank" rel="noopener">公路局・台日駕照互惠</a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= TODO ================= -->
 <section id="todo">
   <div class="wrap">
@@ -490,13 +746,6 @@ footer svg{width:120px;margin:0 auto 8px}
     <div class="card todo-wrap">
       <div class="progress"><div class="bar"><i id="todoBar" class="zero"></i></div><span id="todoCount">0 / 0</span></div>
       <div id="todoGroups"></div>
-      <div class="todo-group">
-        <h4 style="--c:var(--coral)">口袋名單（地圖備註）</h4>
-        <div class="pocket">
-          <a href="https://www.google.com/maps/search/?api=1&query=26.6921711,127.9279771" target="_blank" rel="noopener">今歸仁城遺址</a>
-          <a href="https://www.google.com/maps/search/?api=1&query=26.2169139,127.687452" target="_blank" rel="noopener">JEF 苦瓜漢堡 9:00–20:00</a>
-        </div>
-      </div>
       <button class="reset" id="todoReset" type="button">全部取消勾選</button>
     </div>
   </div>
